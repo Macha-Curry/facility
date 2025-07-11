@@ -15,7 +15,7 @@
                 <tr><td>メーカー：</td><td><input type="text" name="manufacturer"/></td></tr>
                 <tr><td>仕様：</td><td><input type="text" name="specification" /></td></tr>
                 <tr><td>耐用年数:</td><td><input type="text" name="serviceLife" /></td></tr>
-                <tr><td>購入日:</td><td><input type="text" name="purchaceDate" /></td></tr>
+                <tr><td>購入日:</td><td><input type="text" name="purchaseDate" /></td></tr>
                 <tr><td>減価償却：</td><td><input type="text" name="depreciation" /></td></tr>
                 <tr><td>使用不可：</td><td><input type="checkbox" name="notAvailable"/></td></tr>
                 <tr><td>貸出可能：</td><td><input type="checkbox" name="rentAble" /></td></tr>
@@ -36,7 +36,7 @@
                 <td th:text="${facility.manufacturer}">メーカＡ</td>
                 <td th:text="${facility.specification}">仕様Ａ</td>
                 <td th:text="${facility.serviceLife}">4</td>
-                <td th:text="${facility.purchaceDate}">20240101</td>
+                <td th:text="${facility.purchaseDate}">20240101</td>
                 <td th:text="${facility.depreciation}">4</td>
                 <td th:text="${facility.notAvailable}">true</td>
                 <td th:text="${facility.rentAble}">true</td>
@@ -47,14 +47,14 @@
                     <form th:action="@{/facilities/edit}" method="post">
                         <input type="submit" name="form" value="編集" />
                         <!--編集ボタン押下-->
-                        <input type="hidden" name="id" th:value="${facilities.id}"/>
+                        <input type="hidden" name="id" th:value="${facility.id}"/>
                     </form>
                 </td>
                 <td>
                     <form th:action="@{/facilities/delete}" method="post">
                         <input type="submit" name="form" value="削除" />
                         <!--削除ボタン押下-->
-                        <input type="hidden" name="id" th:value="${facilities.id}"/>
+                        <input type="hidden" name="id" th:value="${facility.id}"/>
                     </form>
                 </td>
             </tr>

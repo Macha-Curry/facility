@@ -16,7 +16,7 @@ public class FacilityForm {
     private String manufacturer;    //メーカー
     private String specification;   //仕様
     private Integer serviceLife;    //耐用年数
-    private Integer purchaceDate;   //購入日
+    private Integer purchaseDate;   //購入日
     private Integer depreciation;   //減価償却
     private Boolean notAvailable;   //使用不可
     private Boolean rentAble;       //貸出可能

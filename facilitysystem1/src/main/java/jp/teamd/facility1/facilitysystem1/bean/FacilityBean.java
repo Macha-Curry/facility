@@ -14,7 +14,7 @@ public class FacilityBean {
     String manufacturer;    //メーカー
     String specification;   //仕様
     Integer serviceLife;    //耐用年数
-    Integer purchaceDate;   //購入日
+    Integer purchaseDate;   //購入日
     Integer depreciation;   //減価償却
     Boolean notAvailable;   //使用不可
     Boolean rentAble;       //貸出可能
