@@ -1,11 +1,15 @@
 package jp.teamd.facility1.facilitysystem1.repository;
 
-import java.util.ArrayList;
+import java.util.List;
+
+/*import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
-import org.springframework.beans.BeanUtils;
+import org.springframework.beans.BeanUtils;*/
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import jp.teamd.facility1.facilitysystem1.bean.FacilityBean;
@@ -14,7 +18,13 @@ import jp.teamd.facility1.facilitysystem1.bean.FacilityBean;
 //    Serviceは画面寄りとしてFacilityFormでデータを扱う
 
 @Repository
-public class FacilityRepository {
+public interface FacilityRepository extends JpaRepository<FacilityBean,Integer> {
+
+    @Query("SELECT X FROM FacilityBean X ORDER BY X.product")
+    List<FacilityBean> findAllOrderByTitle();
+}
+/*public class FacilityRepository {
+
     private final ConcurrentMap<Integer,FacilityBean> facilityMap = new ConcurrentHashMap<>();
     //課題８追加
     //id発行
@@ -52,5 +62,6 @@ public class FacilityRepository {
         return facilityMap.get(id);
     }
 
-}
+} 
 
+*/

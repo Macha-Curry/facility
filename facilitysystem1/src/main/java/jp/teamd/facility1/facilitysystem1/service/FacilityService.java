@@ -2,6 +2,7 @@ package jp.teamd.facility1.facilitysystem1.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,26 +32,35 @@ public class FacilityService {
     }
     */
 
+    
     //追加処理　データはFacilityFormで扱い、Repoを使う時はFacilityBeanに入れて渡す
     public FacilityForm create(FacilityForm facilityForm) {
-        facilityForm.setId(facilityRepository.getFacilityId());
+        //facilityForm.setId(facilityRepository.getFacilityId());
         FacilityBean facilityBean = new FacilityBean();
         BeanUtils.copyProperties(facilityForm, facilityBean);
         facilityRepository.save(facilityBean);
         return facilityForm;
     }
 
+    public FacilityForm save(FacilityForm facilityForm) {
+        FacilityBean facilityBean = new FacilityBean();
+        BeanUtils.copyProperties(facilityForm, facilityBean);
+        facilityRepository.save(facilityBean);
+        return facilityForm;
+       }
+       
+
     //更新処理
     public FacilityForm update(FacilityForm facilityForm) {
         FacilityBean facilityBean = new FacilityBean();
         BeanUtils.copyProperties(facilityForm, facilityBean);
-        facilityRepository.update(facilityBean);
+        facilityRepository.save(facilityBean);
         return facilityForm;
     }
 
     //削除処理
     public void delete(Integer id) { 
-        facilityRepository.delete(id); 
+        facilityRepository.deleteById(id); 
     }
 
     //全件取得処理
@@ -67,9 +77,10 @@ public class FacilityService {
 
     //１件取得処理
     public FacilityForm findOne(Integer id) {
-        FacilityBean facilityBean = facilityRepository.findOne(id);
+        Optional<FacilityBean> opt = facilityRepository.findById(id);
+        FacilityBean facility = opt.get();
         FacilityForm facilityForm = new FacilityForm();
-        BeanUtils.copyProperties(facilityBean, facilityForm);
+        BeanUtils.copyProperties(facility, facilityForm);
         return facilityForm;
     }
 }
