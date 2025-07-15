@@ -1,44 +1,69 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
+        <link rel="stylesheet" type="text/css" href="../../static/css/style.css" th:href="@{/css/style}"/>
         <meta charset="UTF-8" />
         <title>設備管理編集画面</title>
     </head>
     <body>
         <form th:action="@{/facilities/edit}" th:object="${facilityForm}" method="post">
             <table>
-                <tr>
-                    <td>品名:</td><td><input type="text" name="product" th:field="*{product}" /></td>
+                <tr><td>品名:</td>
+                    <td>
+                        <input type="text" name="product" th:field="*{product}" th:errorclass="error-input"/>
+                        <span th:if="${#fields.hasErrors('product')}" th:errors="*{product}" class="error-messages">error!</span>
+                    </td>
                 </tr>
-                <tr>
-                    <td>型番：</td><td><input type="text" name="modelNumber" th:field="*{modelNumber}" /></td>
+                <tr><td>型番：</td>
+                    <td>
+                        <input type="text" name="modelNumber" th:field="*{modelNumber}" th:errorclass="error-input"/>
+                        <span th:if="${#fields.hasErrors('modelNumber')}" th:errors="*{modelNumber}" class="error-messages">error!</span>
+                    </td>
                 </tr>
-                <tr>
-                    <td>メーカー：</td><td><input type="text" name="manufacturer" th:field="*{manufacturer}" /></td>
+                <tr><td>メーカー：</td>
+                    <td><input type="text" name="manufacturer" th:field="*{manufacturer}" th:errorclass="error-input"/>
+                        <span th:if="${#fields.hasErrors('manufacturer')}" th:errors="*{manufacturer}" class="error-messages">error!</span>
+                    </td>
                 </tr>
-                <tr>
-                    <td>仕様：</td><td><input type="text" name="specification" th:field="*{specification}" /></td>
+                <tr><td>仕様：</td>
+                    <td><input type="text" name="specification" th:field="*{specification}" th:errorclass="error-input"/>
+                        <span th:if="${#fields.hasErrors('specification')}" th:errors="*{specification}" class="error-messages">error!</span>
+                    </td>
                 </tr>
-                <tr>
-                    <td>耐用年数:</td><td><input type="text" name="serviceLife" th:field="*{serviceLife}" /></td>
+                <tr><td>耐用年数:</td>
+                    <td><input type="text" name="serviceLife" th:field="*{serviceLife}" th:errorclass="error-input"/>
+                        <span th:if="${#fields.hasErrors('serviceLife')}" th:errors="*{serviceLife}" class="error-messages">error!</span>
+                    </td>
                 </tr>
-                <tr>
-                    <td>購入日：</td><td><input type="text" name="purchaseDate" th:field="*{purchaseDate}" /></td>
+                <tr><td>購入日:</td>
+                    <td><input type="text" name="purchaseDate" th:field="*{purchaseDate}" th:errorclass="error-input"/>
+                        <span th:if="${#fields.hasErrors('purchaseDate')}" th:errors="*{purchaseDate}" class="error-messages">error!</span>
+                    </td>
                 </tr>
-                <tr>
-                    <td>減価償却：</td><td><input type="text" name="depreciation" th:field="*{depreciation}" /></td>
+                <tr><td>減価償却：</td>
+                    <td><input type="text" name="depreciation" th:field="*{depreciation}" th:errorclass="error-input"/>
+                        <span th:if="${#fields.hasErrors('depreciation')}" th:errors="*{depreciation}" class="error-messages">error!</span>
+                    </td>
                 </tr>
-                <tr>
-                    <td>使用不可：</td><td><input type="checkbox" name="notAvailable" th:field="*{notAvailable}" /></td>
+                <tr><td>使用不可：</td>
+                    <td><input type="checkbox" name="notAvailable" th:field="*{notAvailable}" th:errorclass="error-input"/>
+                        <span th:if="${#fields.hasErrors('notAvailable')}" th:errors="*{notAvailable}" class="error-messages">error!</span>
+                    </td>
                 </tr>
-                <tr>
-                    <td>貸出可能:</td><td><input type="checkbox" name="rentAble" th:field="*{rentAble}" /></td>
+                <tr><td>貸出可能：</td>
+                    <td><input type="checkbox" name="rentAble" th:field="*{rentAble}" th:errorclass="error-input"/>
+                        <span th:if="${#fields.hasErrors('rentAble')}" th:errors="*{rentAble}" class="error-messages">error!</span>
+                    </td>
                 </tr>
-                <tr>
-                    <td>設置場所：</td><td><input type="text" name="location" th:field="*{location}" /></td>
+                <tr><td>設置場所:</td>
+                    <td><input type="text" name="location" th:field="*{location}" th:errorclass="error-input"/>
+                        <span th:if="${#fields.hasErrors('location')}" th:errors="*{location}" class="error-messages">error!</span>
+                    </td>
                 </tr>
-                <tr>
-                    <td>使用期限：</td><td><input type="text" name="expiry" th:field="*{expiry}" /></td>
+                <tr><td>使用期限:</td>
+                    <td><input type="text" name="expiry" th:field="*{expiry}" th:errorclass="error-input"/>
+                        <span th:if="${#fields.hasErrors('expiry')}" th:errors="*{expiry}" class="error-messages">error!</span>
+                    </td>
                 </tr>
             </table>
             <!--詳しくは課題8参照-->

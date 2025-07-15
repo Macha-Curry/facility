@@ -4,6 +4,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 
 import jp.teamd.facility1.facilitysystem1.form.FacilityForm;
 import jp.teamd.facility1.facilitysystem1.service.FacilityService;
@@ -37,8 +39,12 @@ public class FacilityController {
     }
     //facilities/createにPOST要求
     @PostMapping(path="create")
-    String create(FacilityForm form,Model model) {
-        facilityService.create(form);
+    String create(@Validated FacilityForm form,BindingResult result ,Model model) {
+        if(result.hasErrors()) {
+            //エラー発生時に一覧画面に戻す
+            return list(model);
+        }
+        facilityService.save(form);
         return "redirect:/facilities";
     }
     //facilities/editにパラメタformを含むPOST要求
@@ -51,7 +57,11 @@ public class FacilityController {
     
     //facilities/editにPOST要求
     @PostMapping(path = "edit")
-    String edit(@RequestParam Integer id, FacilityForm form) {
+    String edit(@RequestParam Integer id,@Validated FacilityForm form,BindingResult result) {
+        if(result.hasErrors()) {
+            //エラー発生時に編集画面に戻す
+            return editForm(id,form);
+        }
         facilityService.update(form);
         return "redirect:/facilities";
     }
