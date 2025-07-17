@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+//DB対応ユーザクラス
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
