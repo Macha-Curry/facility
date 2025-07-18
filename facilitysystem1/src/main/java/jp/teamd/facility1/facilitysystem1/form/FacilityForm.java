@@ -25,13 +25,13 @@ public class FacilityForm {
     @NotNull
     @Min(0)
     private Integer serviceLife;    //耐用年数
-    @NotNull
-    private Integer purchaseDate;   //購入日
-    private Integer depreciation;   //減価償却
+    @NotBlank
+    private String purchaseDate;   //購入日
+    private Boolean depreciation;   //減価償却
     private Boolean notAvailable;   //使用不可
     private Boolean rentAble;       //貸出可能
     @NotBlank
     private String location;        //設置場所
-    @NotNull
-    private Integer expiry;         //使用期限
+    @NotBlank
+    private String expiry;         //使用期限
 }
