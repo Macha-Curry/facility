@@ -1,0 +1,92 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: auto;       /* 横スクロール許可 */
+  min-width: 375px;       /* 最小幅を設定 */
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 375px;
+}
+
+.container h4 {
+  position: relative;
+  top: -117px;
+  text-align: center;
+  font-size: 50px;
+  color: rgb(0, 0, 0);
+}
+
+.login-box {
+  background-color: #4f4f4f;
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  width: 350px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.login-box h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  color: #fff;
+  font-size: 14px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background: #7e7cff;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #652cff;
+  transform: translateY(-3px);
+  opacity: 0.9;
+}
+
+.forgot {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.forgot a {
+  color: #fff;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.forgot a:hover {
+  text-decoration: underline;
+}
+.alert {
+  color:red;
+  text-align: center;
+}

@@ -3,21 +3,33 @@
     <head>
         <meta charset="utf-8" />
         <title>ログインフォーム</title>
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstraptheme.mincss" th:href="@{/webjars/bootstrap/3.3.7/bootstrap-theme.min.css}" />
+        <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstraptheme.mincss" th:href="@{/webjars/bootstrap/3.3.7/bootstrap-theme.min.css}" />-->
+        <link rel="stylesheet" type="text/css" th:href="@{/css/loginForm.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}"/>
+    </head>
     </head>
     <body>
-        <div class="container">
-            <h1>設備管理システム</h1>
-            <form class="form-signin" method="post" th:action="@{/login}" >
-                <h2 class="form-signin-heading">ログインフォーム</h2>
-                <div th:if="${param.error}" class="alert alert-danger">
-                    ユーザー名またはパスワードが正しくありません。
-                </div>
-                <input type="text" class="form-control" name="username" placeholder="Username" required="required" autofocus="autofocus" />
-                <input type="password" class="form-control" name="password" placeholder="Password" required="required" />
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-            </form>
+        <div class="wrapper">
+            <div class="container">
+                <h4>書籍管理システム</h4>
+                
+                <form class="login-box" method="post" th:action="@{/login}" >
+                    <h2>ログイン</h2>
+                    <div th:if="${param.error}" class="alert alert-danger">
+                        <p>ユーザー名またはパスワードが<br>正しくありません。</p>
+                    </div>
+                    <div class="input-group">
+                        <label>ユーザー名</label>
+                        <input type="text" name="username" placeholder="username" required="required" autofocus="autofocus" />
+                    </div>
+                    <div class="input-group">    
+                        <label for="password">パスワード</label>
+                        <input type="password" name="password" placeholder="password" required="required" />
+                    </div>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">ログイン</button>
+                </form>
+            </div>
         </div>
     </body>
 </html>
