@@ -1,115 +1,134 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <link rel="stylesheet" type="text/css" href="../../static/css/style.css" th:href="@{/css/style}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/style}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/addFacility.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}"/>
         <meta charset="UTF-8" />
         <title>設備登録一覧画面</title>
     </head>
     <body>
         <p>
             <span sec:authentication="principal.user.username">duke</span>さんログイン中。
+            <form th:action="@{/logout}" method="post"><input type="submit" class="btn btn-default btn-xs" value="ログアウト" /></form>
         </p>
-        <form th:action="@{/logout}" method="post"><input type="submit" class="btn btn-default btn-xs" value="ログアウト" /></form>
-        <form th:action="@{/facilities/create}" th:object="${facilityForm}" method="post">
-            <table>
-                <!--idはシステム側で発行
-                <tr><td>管理番号:</td><td><input type="text" name="id" /></td></tr>
-            -->
-                <tr><td>品名:</td>
-                    <td>
+        
+        <div class="container">
+            <form class="register-form" th:action="@{/facilities/create}" th:object="${facilityForm}" method="post">
+                <table>
+                    <!--idはシステム側で発行
+                    <tr><td>管理番号:</td><td><input type="text" name="id" /></td></tr>
+                -->
+                    <label>品名:
                         <input type="text" name="product" th:field="*{product}" th:errorclass="error-input"/>
                         <span th:if="${#fields.hasErrors('product')}" th:errors="*{product}" class="error-messages">error!</span>
-                    </td>
-                </tr>
-                <tr><td>型番：</td>
-                    <td>
+                    </label>
+                    <label>型番：
                         <input type="text" name="modelNumber" th:field="*{modelNumber}" th:errorclass="error-input"/>
                         <span th:if="${#fields.hasErrors('modelNumber')}" th:errors="*{modelNumber}" class="error-messages">error!</span>
-                    </td>
-                </tr>
-                <tr><td>メーカー：</td>
-                    <td><input type="text" name="manufacturer" th:field="*{manufacturer}" th:errorclass="error-input"/>
+                    </label>
+                    <label>メーカー：
+                        <input type="text" name="manufacturer" th:field="*{manufacturer}" th:errorclass="error-input"/>
                         <span th:if="${#fields.hasErrors('manufacturer')}" th:errors="*{manufacturer}" class="error-messages">error!</span>
-                    </td>
-                </tr>
-                <tr><td>仕様：</td>
-                    <td><input type="text" name="specification" th:field="*{specification}" th:errorclass="error-input"/>
+                    </label>
+                    <label>仕様：
+                        <input type="text" name="specification" th:field="*{specification}" th:errorclass="error-input"/>
                         <span th:if="${#fields.hasErrors('specification')}" th:errors="*{specification}" class="error-messages">error!</span>
-                    </td>
-                </tr>
-                <tr><td>耐用年数:</td>
-                    <td><input type="text" name="serviceLife" th:field="*{serviceLife}" th:errorclass="error-input"/>
+                    </label>
+                    <label>耐用年数:
+                        <!--<input type="text" name="serviceLife" th:field="*{serviceLife}" th:errorclass="error-input"/>-->
+                        <input type="number" value="0" min="0" max="100" step="1"name="serviceLife" th:field="*{serviceLife}" th:errorclass="error-input"/>
                         <span th:if="${#fields.hasErrors('serviceLife')}" th:errors="*{serviceLife}" class="error-messages">error!</span>
-                    </td>
-                </tr>
-                <tr><td>購入日:</td>
-                    <td><input type="text" name="purchaseDate" th:field="*{purchaseDate}" th:errorclass="error-input"/>
+                    </label>
+                    <label>購入日:
+                        <input type="date" name="purchaseDate" th:field="*{purchaseDate}" th:errorclass="error-input"/>
                         <span th:if="${#fields.hasErrors('purchaseDate')}" th:errors="*{purchaseDate}" class="error-messages">error!</span>
-                    </td>
-                </tr>
-                <tr><td>減価償却：</td>
-                    <td><input type="text" name="depreciation" th:field="*{depreciation}" th:errorclass="error-input"/>
+                    </label>
+                    <label>減価償却：
+                        <input type="text" name="depreciation" th:field="*{depreciation}" th:errorclass="error-input"/>
                         <span th:if="${#fields.hasErrors('depreciation')}" th:errors="*{depreciation}" class="error-messages">error!</span>
-                    </td>
-                </tr>
-                <tr><td>使用不可：</td>
-                    <td><input type="checkbox" name="notAvailable" th:field="*{notAvailable}" th:errorclass="error-input"/>
+                    </label>
+                    <label>使用不可：
+                        <select name="使用不可">
+                          <option th:field="*{notAvailable}" value="false">✕</option>
+                          <option th:field="*{notAvailable}" value="true">〇</option>
+                        </select>
+                    </label>
+                    <!--<label>使用不可：
+                        <input type="checkbox" name="notAvailable" th:field="*{notAvailable}" th:errorclass="error-input"/>
                         <span th:if="${#fields.hasErrors('notAvailable')}" th:errors="*{notAvailable}" class="error-messages">error!</span>
-                    </td>
-                </tr>
-                <tr><td>貸出可能：</td>
-                    <td><input type="checkbox" name="rentAble" th:field="*{rentAble}" th:errorclass="error-input"/>
-                        <span th:if="${#fields.hasErrors('rentAble')}" th:errors="*{rentAble}" class="error-messages">error!</span>
-                    </td>
-                </tr>
-                <tr><td>設置場所:</td>
-                    <td><input type="text" name="location" th:field="*{location}" th:errorclass="error-input"/>
-                        <span th:if="${#fields.hasErrors('location')}" th:errors="*{location}" class="error-messages">error!</span>
-                    </td>
-                </tr>
-                <tr><td>使用期限:</td>
-                    <td><input type="text" name="expiry" th:field="*{expiry}" th:errorclass="error-input"/>
+                    </label>-->
+                    <label>貸出可能：
+                        <select name="貸出可能">
+                            <option th:field="*{rentAble}" value="false">✕</option>
+                            <option th:field="*{rentAble}" value="true">〇</option>
+                          </select>
+                    </label>
+                    <!--<label>貸出可能：
+                        <input type="checkbox" name="rentAble" th:field="*{rentAble}" th:errorclass="error-input"/>
+                        <span th:if="${#fields.hasErrors('rentAble')}" th:errors="*{rentAble}" class="error-messages">error!</span> 
+                    </label>-->
+                    <label>設置場所:
+                        <select name="location" id="location">
+                            <!--<option th:field="*{location}" th:value="">未入力</option>-->
+                            <option value="東京本店" th:selected="${facilityForm.location == '東京本店'}">東京本店</option>
+                            <option value="仙台支店" th:selected="${facilityForm.location == '仙台支店'}">仙台支店</option>
+                            <option value="新潟支店" th:selected="${facilityForm.location == '新潟支店'}">新潟支店</option>
+                            <option value="横浜支店" th:selected="${facilityForm.location == '横浜支店'}">横浜支店</option>
+                            <option value="埼玉支店" th:selected="${facilityForm.location == '埼玉支店'}">埼玉支店</option>
+                            <option value="大阪支店" th:selected="${facilityForm.location == '大阪支店'}">大阪支店</option>
+                            <span th:if="${#fields.hasErrors('location')}" th:errors="*{location}" class="error-messages">error!</span>
+                        </select>
+                        <!-- 
+                            <input type="text" name="location" th:field="*{location}" th:errorclass="error-input"/>
+                            <span th:if="${#fields.hasErrors('location')}" th:errors="*{location}" class="error-messages">error!</span>
+                         -->
+                    </label>
+                    <label>使用期限:
+                        <input type="date" name="expiry" th:field="*{expiry}" th:errorclass="error-input"/>
                         <span th:if="${#fields.hasErrors('expiry')}" th:errors="*{expiry}" class="error-messages">error!</span>
+                    </label>
+                    <!--<label>使用期限:
+                        <input type="text" name="expiry" th:field="*{expiry}" th:errorclass="error-input"/>
+                        <span th:if="${#fields.hasErrors('expiry')}" th:errors="*{expiry}" class="error-messages">error!</span>
+                    </label>-->
+                </table>
+                <input type="submit" value="作成"/>
+            </form>
+
+            <table>
+                <!--eachでループ処理-->
+                <tr th:each="facility : ${facilities}">
+                    <!--サンプル表示-->
+                    <td th:text="${facility.id}">100</td>
+                    <td th:text="${facility.product}">品名Ａ</td>
+                    <td th:text="${facility.modelNumber}">型番Ａ</td>
+                    <td th:text="${facility.manufacturer}">メーカＡ</td>
+                    <td th:text="${facility.specification}">仕様Ａ</td>
+                    <td th:text="${facility.serviceLife}">4</td>
+                    <td th:text="${facility.purchaseDate}">20240101</td>
+                    <td th:text="${facility.depreciation}">4</td>
+                    <td th:text="${facility.notAvailable}">true</td>
+                    <td th:text="${facility.rentAble}">true</td>
+                    <td th:text="${facility.location}">設置場所Ａ</td>
+                    <td th:text="${facility.expiry}">100</td>
+
+                    <td>
+                        <form th:action="@{/facilities/edit}" method="post">
+                            <input type="submit" name="form" value="編集" />
+                            <!--編集ボタン押下-->
+                            <input type="hidden" name="id" th:value="${facility.id}"/>
+                        </form>
+                    </td>
+                    <td>
+                        <form th:action="@{/facilities/delete}" method="post">
+                            <input type="submit" name="form" value="削除" />
+                            <!--削除ボタン押下-->
+                            <input type="hidden" name="id" th:value="${facility.id}"/>
+                        </form>
                     </td>
                 </tr>
             </table>
-            <input type="submit" value="作成"/>
-        </form>
-        <hr />
-
-        <table>
-            <!--eachでループ処理-->
-            <tr th:each="facility : ${facilities}">
-                <!--サンプル表示-->
-                <td th:text="${facility.id}">100</td>
-                <td th:text="${facility.product}">品名Ａ</td>
-                <td th:text="${facility.modelNumber}">型番Ａ</td>
-                <td th:text="${facility.manufacturer}">メーカＡ</td>
-                <td th:text="${facility.specification}">仕様Ａ</td>
-                <td th:text="${facility.serviceLife}">4</td>
-                <td th:text="${facility.purchaseDate}">20240101</td>
-                <td th:text="${facility.depreciation}">4</td>
-                <td th:text="${facility.notAvailable}">true</td>
-                <td th:text="${facility.rentAble}">true</td>
-                <td th:text="${facility.location}">設置場所Ａ</td>
-                <td th:text="${facility.expiry}">100</td>
-
-                <td>
-                    <form th:action="@{/facilities/edit}" method="post">
-                        <input type="submit" name="form" value="編集" />
-                        <!--編集ボタン押下-->
-                        <input type="hidden" name="id" th:value="${facility.id}"/>
-                    </form>
-                </td>
-                <td>
-                    <form th:action="@{/facilities/delete}" method="post">
-                        <input type="submit" name="form" value="削除" />
-                        <!--削除ボタン押下-->
-                        <input type="hidden" name="id" th:value="${facility.id}"/>
-                    </form>
-                </td>
-            </tr>
-        </table>
-
+        </div>
     </body>
 </html>
