@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <link rel="stylesheet" type="text/css" href="../../static/css/style.css" th:href="@{/css/style}"/>
+        <link rel="stylesheet" type="text/css" href="../../static/css/edit.css" th:href="@{/css/edit}"/>
         <meta charset="UTF-8" />
         <title>設備管理編集画面</title>
     </head>
     <body>
-        <form th:action="@{/facilities/edit}" th:object="${facilityForm}" method="post">
+        <div class="logout-area fixed-top-right">
+            <button id="logoutBtn">ログアウト</button>
+        </div>
+        <div class="container">
+            <h1>設備編集画面</h1>
+        <form class="register-form" th:action="@{/facilities/edit}" th:object="${facilityForm}" method="post">
             <table>
                 <tr><td>品名:</td>
                     <td>
@@ -71,5 +76,6 @@
             <input type="submit" name="goToTop" value="戻る" />
             <input type="submit" value="更新" />
         </form>
+        </div>
     </body>
 </html>
