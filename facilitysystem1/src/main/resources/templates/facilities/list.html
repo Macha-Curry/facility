@@ -48,7 +48,7 @@
                     </td>
                 </tr>
                 <tr><td>減価償却：</td>
-                    <td><input type="text" name="depreciation" th:field="*{depreciation}" th:errorclass="error-input"/>
+                    <td><input type="checkbox" name="depreciation" th:field="*{depreciation}" th:errorclass="error-input"/>
                         <span th:if="${#fields.hasErrors('depreciation')}" th:errors="*{depreciation}" class="error-messages">error!</span>
                     </td>
                 </tr>
