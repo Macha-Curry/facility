@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>権限選択ページ</title>
+        <meta name="viewport" content="width=device-width">
+        <script src=""></script>
+        <link rel="stylesheet" href="../../static/css/common.css" th:href="@{/css/common.css}">
+        <link rel="stylesheet" href="../../static/css/facility-list.css" th:href="@{/css/facility-list.css}">
+        <link rel="stylesheet" th:href="@{/css/.css}">
+    </head>
+    <body>
+        <!-- header ここから -->
+        <header class="header">
+            <div class="header-inner">
+                <a class="header-logo" th:href="@{/select-permission}">
+                    <img src="../../static/image/Facility_logo_sumika.png" th:src="@{/image/Facility_logo_sumika.png}" alt="LOGO">
+                </a>
+                <div>
+                    <nav class="site-menu">
+                        <ul>
+                            <form  th:action="@{/logout}" method="post"><input  class="logoutBtn" type="submit" value="ログアウト" /></form>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <!-- header ここまで -->
+
+        <!-- main ここから -->
+        <main class="main">
+            <div class="heading">
+                <h1>設備管理システム</h1>
+            </div>
+                <!-- 検索フォーム -->
+                <form th:action="@{/facilities/adminSearch}" th:object="${facilityForm}" method="post">
+                    <table class="facility-search-table">
+                        <div class="filters">
+                            管理番号:
+                            <select name="id">
+                                <option value="">未選択</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <!-- 他のIDを追加 -->
+                            </select>
+                            品名:
+                            <select name="name" th:field="*{name}" th:errorclass="error-input">
+                                <option value="">未選択</option>
+                                <option value="ノートPC">ノートPC</option>
+                                <option value="キーボード">キーボード</option>
+                                <option value="マウス">マウス</option>
+                                <option value="モニター">モニター</option>
+                                <option value="レーザープリンター">レーザープリンター</option>
+                                <option value="インクジェッタ">インクジェッタ</option>
+                                <option value="ラックマウントサーバー">ラックマウントサーバー</option>
+                                <option value="ルータ">ルータ</option>
+                                <option value="ハブ">ハブ</option>
+                                <option value="テプラー">テプラー</option>
+                                <option value="テレビ">テレビ</option>
+                                <option value="スピーカー">スピーカー</option>
+                                <option value="電話機">電話機</option>    
+                                <!-- 他の品名を追加 -->
+                            </select>
+                            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error-messages">※入力必須</span>
+                            メーカー:
+                            <select name="manufacturer">
+                                <option value="">未選択</option>
+                                <option value="Panasonic">Panasonic</option>
+                                <option value="Sharp">Sharp</option>
+                                <option value="Sony">Sony</option>
+                            </select>
+                            耐用年数:
+                            <select name="serviceLife">
+                                <option value="">未選択</option>
+                                <option value="3">3年</option>
+                                <option value="5">5年</option>
+                                <option value="10">10年</option>
+                            </select>
+                            設置場所:
+                            <select name="location">
+                                <option value="">未選択</option>
+                                <option value="東京本店">東京本店</option>
+                                <option value="仙台支店">仙台支店</option>
+                                <option value="新潟支店">新潟支店</option>
+                                <option value="横浜支店">横浜支店</option>
+                                <option value="埼玉支店">埼玉支店</option>
+                                <option value="大阪支店">大阪支店</option>
+                            </select>
+                            <input type="submit" value="この条件で検索" class="search-button" />
+                        </div>
+                    </table>
+                </form>
+            </div>
+            <div class="action-buttons">
+                <!-- 登録フォーム：チェックボックスとは無関係 -->
+                <form th:action="@{/facilities/register}" method="post">
+                    <div id="action-buttons-register">
+                        <button type="submit" id="registerBtn">登録</button>
+                    </div>
+                </form>
+        
+                <!-- 編集フォーム：チェックされたIDをPOST -->
+                <form th:action="@{/facilities/editSelected}" method="post">
+                    <div id="action-buttons-edit">
+                        <button type="submit" id="editBtn" disabled>編集</button>
+                    </div>
+                </form>
+
+                <!-- 削除フォーム：チェックされたIDをPOST -->
+                <form th:action="@{/facilities/delete}" method="post">
+                    <div id="action-buttons-delete">
+                        <button type="submit" id="deleteBtn" disabled>削除</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- 一覧表示 -->
+            <div class="table-wrapper">
+                <form method="post" id="tableForm">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="checkbox-cell">チェック</th>
+                                <th>管理番号</th>
+                                <th>品名</th>
+                                <th>型番</th>
+                                <th>メーカー</th>
+                                <th>仕様</th>
+                                <th>耐用年数</th>
+                                <th>購入日</th>
+                                <th>減価償却</th>
+                                <th>利用可能</th>
+                                <th>貸出可能</th>
+                                <th>設置場所</th>
+                                <th>使用期限</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="facility : ${facilities}">
+                                <td><input type="checkbox" name="selectedIds" th:value="${facility.id}" /></td>
+                                <td th:text="${facility.id}">0</td>
+                                <td th:text="${facility.name}">品名</td>
+                                <td th:text="${facility.modelNumber}">型番</td>
+                                <td th:text="${facility.manufacturer}">メーカー</td>
+                                <td th:text="${facility.specification}">仕様</td>
+                                <td th:text="${facility.serviceLife}">耐用年数</td>
+                                <td th:text="${facility.purchaseDate}">購入日</td>
+                                <td th:text="${facility.depreciation}">減価償却</td>
+                                <td th:text="${facility.available}">利用可能</td>
+                                <td th:text="${facility.lendable}">貸出可能</td>
+                                <td th:text="${facility.location}">設置場所</td>
+                                <td th:text="${facility.expiration}">使用期限</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </main>
+        <!-- main ここまで -->
+
+        <!-- footer ここから -->
+        <footer class="footer">
+            <div>
+                <a class="footer-logo" th:href="@{/select-permission}">
+                    <img src="../../static/image/Facility_logo_sumika.png" th:src="@{/image/Facility_logo_sumika.png}" alt="LOGO">
+                </a>
+                <p class="copyright"><small>&copy; 2025 清夏 Facility Management System</small></p>
+            </div>
+        </footer>
+        <!-- footer ここまで -->
+    </body>
+</html>

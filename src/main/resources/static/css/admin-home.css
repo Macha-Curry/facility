@@ -1,0 +1,125 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.main {
+    padding: 150px;
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+.container {
+    max-width: 450px;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    color: white;
+    background-color: #4f4f4f;
+    padding-top: 20px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.container h2{
+    color: #ffffff;
+}
+
+.text {
+    padding: 20px;
+}
+
+.readonty-text-color {
+    color: #0077d7;
+}
+
+.admin-text-color{
+    color: #29ff3ec3;
+}
+
+.button-group {
+    display: flex;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+    gap: 5%;
+}
+
+.btn {
+    width: 100%;
+    text-decoration: none;
+    padding: 10px 10px;
+    font-size: 18px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    color: white;
+
+}
+
+.btn.facility-list {
+    flex: 1;
+    height: 50px;
+    white-space: normal;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
+    background-color: #0077d7;
+}
+  
+.btn.user-create {
+    flex: 1;
+    height: 50px;
+    white-space: normal;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
+    background-color: #29ff3ec3;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    opacity: 0.8;
+}
+
+@media screen and (max-width: 500px) {
+    .main {
+        padding: 100px;
+        padding-left: 10%;
+        padding-right: 10%
+    }
+    .container {
+      padding: 10px;
+      max-width: 90%;
+      min-width:250px;
+    }
+  
+    .button-group {
+      flex-direction: column;
+      gap: 15px;
+    }
+  
+    .btn {
+      width: 100%;
+    }
+
+    .btn.facility-list,
+    .btn.user-create {
+      flex: 1;
+      min-height: 50px;
+      white-space: normal;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
+    }
+
+  }

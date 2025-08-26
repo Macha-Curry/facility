@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>ユーザー作成</title>
+        <meta name="viewport" content="width=device-width">
+        <script src=""></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <link rel="stylesheet" href="../../static/css/common.css" th:href="@{/css/common.css}">
+        <link rel="stylesheet" href="../../static/css/create-user.css" th:href="@{/css/create-user.css}">
+    </head>
+    <body>
+        <!-- header ここから -->
+        <header class="header">
+            <div class="header-inner">
+                <a class="header-logo" th:href="@{/select-permission}">
+                    <img src="../../static/image/Facility_logo_sumika.png" th:src="@{/image/Facility_logo_sumika.png}" alt="LOGO">
+                </a>
+                <div>
+                    <nav class="site-menu">
+                        <ul>
+                            <form  th:action="@{/logout}" method="post"><input  class="logoutBtn" type="submit" value="ログアウト" /></form>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <!-- header ここまで -->
+
+        <!-- main ここから -->
+        <main class="main">
+            <div class="container">
+                <h2>ユーザー作成</h2>
+                <form th:action="@{/auth/create}" th:object="${userForm}" method="post">
+                    <div class="input-group">  
+                        <span class="input-icon-box">
+                            <i class="fa fa-user"></i>
+                        </span>
+                        <input class="form-control" type="text" name="username" th:field="*{username}" placeholder="ログインID" th:errorclass="error-input" />
+                    </div>
+                    <div class="input-group">  
+                        <span class="input-icon-box">
+                            <i class="fa fa-lock"></i>
+                        </span>
+                        <input class="form-control" type="text" name="password" th:field="*{password}" placeholder="パスワード" th:errorclass="error-input" />
+                    </div> 
+                    <button class="btn btn-cr btn-primary btn-block" type="submit">ユーザー作成</button>
+                </form>
+            </div>
+        </main>
+        <!-- main ここまで -->
+
+        <!-- footer ここから -->
+        <footer class="footer">
+            <div>
+                <a class="footer-logo" th:href="@{/select-permission}">
+                    <img src="../../static/image/Facility_logo_sumika.png" th:src="@{/image/Facility_logo_sumika.png}" alt="LOGO">
+                </a>
+                <p class="copyright"><small>&copy; 2025 清夏 Facility Management System</small></p>
+            </div>
+        </footer>
+        <!-- footer ここまで -->
+    </body>
+</html>

@@ -1,0 +1,179 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  overflow-x: auto; /* 横スクロール対応 */
+}
+
+.container {
+  min-width: 1200px; /* 最小幅を確保して潰れ防止 */
+  margin: auto;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.filters {
+  gap: 10px;
+  margin-bottom: 20px;
+  height: 30px;
+  padding: 20px;
+}
+.action-buttons{
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+input[type="text"],
+input[type="search"] {
+  padding: 8px;
+  width: 150px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  min-width: 1200px;
+}
+
+th {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+  white-space: nowrap;
+  background-color: #4a90e2;
+  color: white;
+}
+
+td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+  white-space: nowrap;
+  color: black;
+}
+
+.filters-pull {
+
+}
+
+tr:nth-child(even) {
+  background-color: #f2f6fc;
+}
+
+.action-buttons form:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.action-buttons-register {
+  border: none;
+  color: white;
+  background-color: #4a90e2;
+}
+
+.action-buttons-edit {
+  border: none;
+  color: white;
+  background-color: #4a90e2;
+}
+
+.action-buttons-delete {
+  padding: 10px 20px;
+  border: none;
+  color: white;
+  background-color: #4a90e2;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.checkbox-cell {
+  width: 40px;
+}
+
+/* true/false 表示用スタイル */
+.bool {
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: #fff;
+  display: inline-block;
+}
+
+#searchBtn :hover:not(:disabled) {
+  background-color:#4a90e2;
+  transform: translateY(-3px);
+}
+
+.bool.true {
+  color: #4a90e2;
+}
+
+.bool.false {
+  color: #e74c3c;
+}
+
+
+
+
+.action-buttons button{
+  padding: 10px 20px;
+  border: none;
+  color: white;
+  background-color: #4a90e2;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+/* ホバー時に少し浮かせる */
+.action-buttons button:hover:not(:disabled) {
+  transform: translateY(-3px);
+}
+
+/* 無効時のスタイル */
+.action-buttons button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.logout-area {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#logoutBtn {
+  padding: 6px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+#logoutBtn:hover {
+  background-color: #d32f2f;
+}
+
+.container {
+  min-width: 1200px;
+  margin: auto;
+  padding-top: 50px; /* ログアウトエリアの高さ + 余裕 */
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>権限選択ページ</title>
+        <meta name="viewport" content="width=device-width">
+        <script src=""></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <link rel="stylesheet" href="../static/css/common.css" th:href="@{/css/common.css}">
+        <link rel="stylesheet" href="../static/css/login-form.css" th:href="@{/css/login-form.css}">
+    </head>
+    <body>
+        <!-- header ここから -->
+        <header class="header">
+            <div class="header-inner">
+                <a class="header-logo" th:href="@{/select-permission}">
+                    <img src="../static/image/Facility_logo_sumika.png" th:src="@{/image/Facility_logo_sumika.png}" alt="LOGO">
+                </a>
+                <div>
+                    <nav class="site-menu">
+                        <ul>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <!-- header ここまで -->
+
+        <!-- main ここから -->
+        <main class="main">
+            <div class="container">
+                <h2>管理者ログイン</h2>
+                <form class="login-box" method="post" th:action="@{/login}">
+                    <div th:if="${param.error}" class="alert alert-danger">
+                        <p class="error">ユーザー名またはパスワードが<br>正しくありません。</p>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-icon-box">
+                          <i class="fa fa-user"></i>
+                        </span>
+                        <input class="form-control" type="text" name="username" placeholder="ログインID" required="required" autofocus="autofocus">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-icon-box">
+                          <i class="fa fa-lock"></i>
+                        </span>
+                        <input class="form-control"  type="password" name="password" placeholder="パスワード" required="required">
+                    </div>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">ログイン</button>
+                    <p class="forgot"><a href="#">パスワードを忘れた？</a></p>
+                </form>
+            </div>
+        </main>
+        <!-- main ここまで -->
+
+        <!-- footer ここから -->
+        <footer class="footer">
+            <div>
+                <a class="footer-logo" th:href="@{/select-permission}">
+                    <img src="../static/image/Facility_logo_sumika.png" th:src="@{/image/Facility_logo_sumika.png}" alt="LOGO">
+                </a>
+                <p class="copyright"><small>&copy; 2025 清夏 Facility Management System</small></p>
+            </div>
+        </footer>
+        <!-- footer ここまで -->
+    </body>
+</html>
